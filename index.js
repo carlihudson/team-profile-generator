@@ -2,7 +2,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path')
-const generateHTML = require('generateHtML');
+// const generateHTML = require('./generateHTML');
 
 // array of questions for user input
 const questions = [
