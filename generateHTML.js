@@ -58,7 +58,7 @@ const internCard = () => {
 };
 
 // function to generate HTML page
-const generatePage = (data) => {
+const generateHTML = (data) => {
 
     // empty array for card data to be pushed into 
     contentArray = []

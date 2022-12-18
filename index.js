@@ -113,7 +113,7 @@ const addlEmployees = () => {
                             addIntern()
                         }
                     } else {
-                        generateHTML()
+                        generateFile()
                     }
                 });
             };
@@ -269,7 +269,7 @@ const writeToFile = (fileName, data) => {
     return fs.writeFileSync(path.join(process.cwd(), fileName), data);
 }
 
-const generateHTML = (inquirerResponses => {
+const generateFile = (inquirerResponses => {
     writeToFile('./dist/index.html',
     generateHTML({...inquirerResponses}), (err) => err ?
     console.log(err) : console.log('Success! Creating your team profile'))
