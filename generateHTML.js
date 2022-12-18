@@ -1,2 +1,2 @@
 
-module.exports = generateHTML
+module.exports = generateHTML;
