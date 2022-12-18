@@ -35,7 +35,7 @@ const startQuestions = () =>  {
             {
                 type: 'input',
                 message: 'What is their ID number?',
-                id: 'id',
+                name: 'id',
                 validate: idInput => {
                     if(isNaN(idInput)) {
                         console.log('Please enter a valid ID number');
@@ -49,7 +49,7 @@ const startQuestions = () =>  {
             {
                 type: 'input',
                 message: "What is their email address?",
-                email: 'email',
+                name: 'email',
                 validate: emailInput => {
                     valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailInput)
                     if (valid) {
@@ -63,7 +63,7 @@ const startQuestions = () =>  {
             {
                 type: 'input',
                 message: "What is their office number?",
-                officeNumber: 'officeNumber',
+                name: 'officeNumber',
                 validate: officeInput => {
                     if(isNaN(officeInput)) {
                         console.log('Please enter a valid office number');
@@ -81,40 +81,200 @@ const startQuestions = () =>  {
             const manager = new Manager (name, id, email, officeNumber);
             employeeArray.push(manager); 
             console.log(manager); 
-
-            // writeToFile('./dist.index.html', 
-            // generateHTML({...inquirerResponses}), (err) => err ? 
-            // console.log(err) : console.log('success!'));
             
         });
 }
 
-   
- 
-   
-    
-//     // employee specific questions
-//     {
-//         type: 'input',
-//         message: "What is your GitHub username?",
-//         name: 'github',
-//     },
-   
-//     {
-//         type: 'input',
-//         message: "What school do you go to?",
-//         name: 'school',
-//     }
-// ]
+// function asking if user would like to add another, and if so what type
+const addlEmployees = () => {
+    console.log('Manager added successfully!');
+        return inquirer.prompt (
+            [
+                {
+                    type: 'confirm',
+                    name: 'role',
+                    message: 'Would you like to add another employee?',
+                    default: true
+                },
+                {
+                    type: 'list',
+                    name: 'roleType',
+                    message: 'What kind of employee would you like to add?',
+                    choices: ['Engineer', 'Intern'],
+                    when: (confirm) => confirm.role === true
+                    
+                },
+            ])
+                .then((answers) => {
+                    if(answers.role === true) {
+                        if(answers.roleType === 'Engineer') {
+                            addEngineer()
+                        } else if(answers.roleType === 'Intern') {
+                            addIntern()
+                        }
+                    } else {
+                        // activate generate HTML function
+                    }
+                });
+            };
 
+// function called if user selects to add an engineer
+const addEngineer = () => {
+    return inquirer.prompt (
+        [
+            {
+                type: 'input',
+                message: 'Please enter the name of the Engineer.',
+                name: 'engName',
+                validate: nameInput => {
+                    if(nameInput) {
+                        return true;
+                    } else {
+                        console.log('Please enter a name');
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                message: 'What is their ID number?',
+                name: 'engId',
+                validate: idInput => {
+                    if(isNaN(idInput)) {
+                        console.log('Please enter a valid ID number');
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
 
-// function writeToFile(fileName, data) {
+            },
+            {
+                type: 'input',
+                message: "What is their email address?",
+                name: 'engEmail',
+                validate: emailInput => {
+                    valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailInput)
+                    if (valid) {
+                        return true;
+                    } else {
+                        console.log ('Please enter an email address')
+                        return false; 
+                    }
+                }
+            },
+            {
+                type: 'input',
+                message: "What is their github username?",
+                name: 'github',
+                validate: githubInput => {
+                    if(githubInput) {
+                        return true;
+                    } else {
+                        console.log('Please enter a username');
+                        return false;
+                    }
+                }
+            },
+
+        ]
+    )
+        .then(engineerInfo => {
+            const { engName, engId, engEmail, github } = engineerInfo
+            const engineer = new Engineer (engName, engId, engEmail, github);
+            employeeArray.push(engineer); 
+            console.log(engineer); 
+            console.log(employeeArray);
+            
+        });
+}
+
+// function called if user selects to add an intern
+const addIntern = () => {
+    return inquirer.prompt (
+        [
+            {
+                type: 'input',
+                message: 'Please enter the name of the Intern.',
+                name: 'intName',
+                validate: nameInput => {
+                    if(nameInput) {
+                        return true;
+                    } else {
+                        console.log('Please enter a name');
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                message: 'What is their ID number?',
+                name: 'intId',
+                validate: idInput => {
+                    if(isNaN(idInput)) {
+                        console.log('Please enter a valid ID number');
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+
+            },
+            {
+                type: 'input',
+                message: "What is their email address?",
+                name: 'intEmail',
+                validate: emailInput => {
+                    valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailInput)
+                    if (valid) {
+                        return true;
+                    } else {
+                        console.log ('Please enter an email address')
+                        return false; 
+                    }
+                }
+            },
+            {
+                type: 'input',
+                message: "What school do they attend?",
+                name: 'school',
+                validate: schoolInput => {
+                    if(schoolInput) {
+                        return true;
+                    } else {
+                        console.log('Please enter a school');
+                        return false;
+                    }
+                }
+            },
+
+        ]
+    )
+        .then(internInfo => {
+            const { intName, intId, intEmail, school } = internInfo
+            const intern = new Intern (intName, intId, intEmail, school);
+            employeeArray.push(intern); 
+            console.log(intern); 
+            console.log(employeeArray);
+            
+        });
+}
+
+// write to file function that I still need to figure out
+
+// const writeToFile = (fileName, data) => {
 //     return fs.writeFileSync(path.join(process.cwd(), fileName), data);
-// }
-
+    
+// const createFile(inquirerResponses => {
+//         writeToFile('./dist/index.html', 
+//         generateHTML({...inquirerResponses}), (err) => err ? 
+//         console.log(err) : console.log('success!'));
+        
+//     });
 
 
 
 
 // Function call to initialize app
 startQuestions()
+    .then(addlEmployees)
