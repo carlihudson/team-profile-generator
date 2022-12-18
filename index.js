@@ -1,5 +1,5 @@
 // module to create HTML file
-// const generateHTML = require('./generateHTML');
+const generateHTML = require('./generateHTML');
 
 // required node modules
 const inquirer = require('inquirer');
@@ -81,13 +81,13 @@ const startQuestions = () =>  {
             const manager = new Manager (name, id, email, officeNumber);
             employeeArray.push(manager); 
             console.log(manager); 
+            console.log('Manager added successfully!');
             
         });
 }
 
 // function asking if user would like to add another, and if so what type
 const addlEmployees = () => {
-    console.log('Manager added successfully!');
         return inquirer.prompt (
             [
                 {
@@ -113,7 +113,7 @@ const addlEmployees = () => {
                             addIntern()
                         }
                     } else {
-                        // activate generate HTML function
+                        generateFile()
                     }
                 });
             };
@@ -182,9 +182,11 @@ const addEngineer = () => {
         .then(engineerInfo => {
             const { engName, engId, engEmail, github } = engineerInfo
             const engineer = new Engineer (engName, engId, engEmail, github);
+            console.log('Engineer added successfully!');
             employeeArray.push(engineer); 
             console.log(engineer); 
             console.log(employeeArray);
+            addlEmployees();
             
         });
 }
@@ -253,28 +255,26 @@ const addIntern = () => {
         .then(internInfo => {
             const { intName, intId, intEmail, school } = internInfo
             const intern = new Intern (intName, intId, intEmail, school);
+            console.log('Intern added successfully!')
             employeeArray.push(intern); 
             console.log(intern); 
             console.log(employeeArray);
+            addlEmployees();
             
         });
 }
 
 // write to file function that I still need to figure out
+const writeToFile = (fileName, data) => {
+    return fs.writeFileSync(path.join(process.cwd(), fileName), data);
+}
 
-// const writeToFile = (fileName, data) => {
-//     return fs.writeFileSync(path.join(process.cwd(), fileName), data);
+const generateFile = (inquirerResponses => {
+    writeToFile('./dist/index.html',
+    generateHTML({...inquirerResponses}), (err) => err ?
+    console.log(err) : console.log('Success! Creating your team profile'))
+})
     
-// const createFile(inquirerResponses => {
-//         writeToFile('./dist/index.html', 
-//         generateHTML({...inquirerResponses}), (err) => err ? 
-//         console.log(err) : console.log('success!'));
-        
-//     });
-
-
-
-
 // Function call to initialize app
 startQuestions()
     .then(addlEmployees)
