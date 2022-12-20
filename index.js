@@ -271,7 +271,7 @@ const writeToFile = (fileName, data) => {
 
 const generateFile = (inquirerResponses => {
     writeToFile('./dist/index.html',
-    generateHTML({...inquirerResponses}), (err) => err ?
+    generateHTML(employeeArray), (err) => err ?
     console.log(err) : console.log('Success! Creating your team profile'))
 })
     
