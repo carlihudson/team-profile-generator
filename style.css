@@ -5,6 +5,12 @@ header  {
     width: 100%;
 }
 
+.container { 
+    margin-bottom: 10rem;
+    margin-left: 1.75rem;
+
+}
+
 
 footer {
     font-family: 'Raleway', sans-serif;

@@ -1,9 +1,10 @@
 // function to generate manager card
-const managerCard = () => {
+const managerCard = (manager) => {
     return `
-    <div class="flex justify-center">
+    <div class="flex justify-center team-cards">
             <div class="block mt-6 p-6 rounded-lg shadow-lg bg-purple-200 max-w-sm">
-              <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">${manager.name} - Manager</h5>
+              <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">${manager.name}</h5>
+              <h5 class="text-gray-900 text-l leading-tight font-medium mb-2"> Manager </h5>
               <p class="text-gray-700 text-base mb-4">
                 <ul>
                     <li>Email: <a href="mailto:${manager.email}">${manager.email}</a></li>
@@ -18,9 +19,9 @@ const managerCard = () => {
 };
 
 // function to generate engineer card
-const engineerCard = () => {
+const engineerCard = (engineer) => {
     return `
-    <div class="flex justify-center">
+    <div class="flex justify-center team-cards">
             <div class="block mt-6 p-6 rounded-lg shadow-lg bg-purple-200 max-w-sm">
               <h4 class="text-gray-900 text-xl leading-tight font-medium mb-2">${engineer.name}</h4>
               <h5 class="text-gray-900 text-l leading-tight font-medium mb-2"> Engineer </h5>
@@ -30,7 +31,7 @@ const engineerCard = () => {
                         <br>
                     <li>Employee ID: ${engineer.id}</li>
                         <br>
-                    <li>Github: <a href="www.github.com/${engineer.github}>${engineer.github}</a></li>    
+                    <li>Github: <a href="https://www.github.com/${engineer.github}" target="_blank">${engineer.github}</a></li>    
                 </ul>
               </p>
             </div>
@@ -38,10 +39,10 @@ const engineerCard = () => {
 };
 
 // function to generate intern card
-const internCard = () => {
-    return 
-    `<div class="flex justify-center">
-            <div class="block mt-6 p-6 rounded-lg shadow-lg bg-purple-200 max-w-sm">
+const internCard = (intern) => {
+    return `
+    <div class="flex justify-center team-cards">
+    <div class="block mt-6 p-6 rounded-lg shadow-lg bg-purple-200 max-w-sm">
               <h4 class="text-gray-900 text-xl leading-tight font-medium mb-2">${intern.name}</h4>
               <h5 class="text-gray-900 text-l leading-tight font-medium mb-2"> Intern </h5>
               <p class="text-gray-700 text-base mb-4">
@@ -92,30 +93,30 @@ const generateHTML = (data) => {
 
 const generateStructure = (employeeCards) => {
    return `<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Our Team</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href='../style.css'>
-</head>
-
-<body>
-    <header>
-        <div class="text-center py-2 px-6">
-            <h1 class="text-5xl font-bold mt-0 mb-6">Our Team</h1>
-        </div>
-    </header>
-
-    <main>
-        <div class="container">
-            <div class="row justify-content-center" id="team-cards">
-                <!--Team Cards-->
+   <html lang="en">
+   
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <script src="https://cdn.tailwindcss.com"></script>
+       <title>Our Team</title>
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
+       <link rel="stylesheet" href='../style.css'>
+   </head>
+   
+   <body>
+       <header>
+           <div class="text-center py-2 px-6">
+               <h1 class="text-5xl font-bold mt-0 mb-6">Our Team</h1>
+           </div>
+       </header>
+   
+       <main>
+           <div class="container">
+               <div class="flex flex-wrap basis-1/3 justify-evenly w-full">
+                   <!--Team Cards-->
                 ${employeeCards}
             </div>
         </div>
