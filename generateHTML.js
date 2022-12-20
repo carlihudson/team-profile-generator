@@ -39,8 +39,8 @@ const engineerCard = () => {
 
 // function to generate intern card
 const internCard = () => {
-    return `
-    <div class="flex justify-center">
+    return 
+    `<div class="flex justify-center">
             <div class="block mt-6 p-6 rounded-lg shadow-lg bg-purple-200 max-w-sm">
               <h4 class="text-gray-900 text-xl leading-tight font-medium mb-2">${intern.name}</h4>
               <h5 class="text-gray-900 text-l leading-tight font-medium mb-2"> Intern </h5>
