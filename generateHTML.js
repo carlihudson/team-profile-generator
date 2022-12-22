@@ -2,7 +2,7 @@
 const managerCard = (manager) => {
     return `
     <div class="team-cards">
-            <div class="block mt-6 p-6 rounded-lg shadow-lg bg-purple-200 max-w-sm">
+            <div class="block mt-10 mx-auto p-6 rounded-lg shadow-lg bg-purple-200 max-w-sm">
               <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">${manager.name}</h5>
               <h5 class="text-gray-900 text-l leading-tight font-medium mb-2"> Manager </h5>
               <p class="text-gray-700 text-base mb-4">
@@ -22,7 +22,7 @@ const managerCard = (manager) => {
 const engineerCard = (engineer) => {
     return `
     <div class="team-cards">
-            <div class="block mt-6 p-6 rounded-lg shadow-lg bg-purple-200 max-w-sm">
+            <div class="block mt-10 mx-auto p-6 rounded-lg shadow-lg bg-purple-200 max-w-sm">
               <h4 class="text-gray-900 text-xl leading-tight font-medium mb-2">${engineer.name}</h4>
               <h5 class="text-gray-900 text-l leading-tight font-medium mb-2"> Engineer </h5>
               <p class="text-gray-700 text-base mb-4">
@@ -42,7 +42,7 @@ const engineerCard = (engineer) => {
 const internCard = (intern) => {
     return `
     <div class="team-cards">
-    <div class="block mt-6 p-6 rounded-lg shadow-lg bg-purple-200 max-w-sm">
+    <div class="block mt-10 mx-auto p-6 rounded-lg shadow-lg bg-purple-200 max-w-sm">
               <h4 class="text-gray-900 text-xl leading-tight font-medium mb-2">${intern.name}</h4>
               <h5 class="text-gray-900 text-l leading-tight font-medium mb-2"> Intern </h5>
               <p class="text-gray-700 text-base mb-4">
@@ -114,8 +114,7 @@ const generateStructure = (employeeCards) => {
        </header>
    
        <main>
-               <div class="container flex flex-wrap basis-1/3 justify-evenly w-full
-               columns-3">
+               <div class="container grid grid-cols-3 w-full mx-auto mb-20">
                    <!--Team Cards-->
                 ${employeeCards}
             </div>
