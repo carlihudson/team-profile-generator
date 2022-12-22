@@ -1,7 +1,7 @@
 // function to generate manager card
 const managerCard = (manager) => {
     return `
-    <div class="flex justify-center team-cards">
+    <div class="team-cards">
             <div class="block mt-6 p-6 rounded-lg shadow-lg bg-purple-200 max-w-sm">
               <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">${manager.name}</h5>
               <h5 class="text-gray-900 text-l leading-tight font-medium mb-2"> Manager </h5>
@@ -21,7 +21,7 @@ const managerCard = (manager) => {
 // function to generate engineer card
 const engineerCard = (engineer) => {
     return `
-    <div class="flex justify-center team-cards">
+    <div class="team-cards">
             <div class="block mt-6 p-6 rounded-lg shadow-lg bg-purple-200 max-w-sm">
               <h4 class="text-gray-900 text-xl leading-tight font-medium mb-2">${engineer.name}</h4>
               <h5 class="text-gray-900 text-l leading-tight font-medium mb-2"> Engineer </h5>
@@ -41,7 +41,7 @@ const engineerCard = (engineer) => {
 // function to generate intern card
 const internCard = (intern) => {
     return `
-    <div class="flex justify-center team-cards">
+    <div class="team-cards">
     <div class="block mt-6 p-6 rounded-lg shadow-lg bg-purple-200 max-w-sm">
               <h4 class="text-gray-900 text-xl leading-tight font-medium mb-2">${intern.name}</h4>
               <h5 class="text-gray-900 text-l leading-tight font-medium mb-2"> Intern </h5>
@@ -114,12 +114,11 @@ const generateStructure = (employeeCards) => {
        </header>
    
        <main>
-           <div class="container">
-               <div class="flex flex-wrap basis-1/3 justify-evenly w-full">
+               <div class="container flex flex-wrap basis-1/3 justify-evenly w-full
+               columns-3">
                    <!--Team Cards-->
                 ${employeeCards}
             </div>
-        </div>
     </main>
 
     <footer class="p-4 bg-white rounded-lg shadow md:px-6 md:py-8">
